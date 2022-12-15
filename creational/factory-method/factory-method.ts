@@ -42,11 +42,13 @@ class Jam implements Product {
 // App code
 function app(creator: ProductCreator) {
   console.log(creator.exampleDefaultActions());
+  const anotherProduct = creator.factoryMethod();
+  console.log(anotherProduct.print());
 }
 
 console.log('App: Launched with soap creator.');
 app(new SoapCreator());
-console.log('');
+console.log('--------------------------------');
 
 console.log('App: Launched with jam creator.');
 app(new JamCreator());
