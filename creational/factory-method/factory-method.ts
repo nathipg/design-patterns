@@ -1,47 +1,52 @@
-interface IAnimal {
-  sound: string;
+// Abstract creator
+abstract class ProductCreator {
+  public abstract factoryMethod(): Product;
 
-  speak(): void;
-}
-
-class Animal implements IAnimal {
-  sound: string;
-
-  constructor() {
-    this.sound = '...';
-  }
-
-  speak() {
-    console.log(this.sound);
+  public exampleDefaultActions(): string {
+    const product = this.factoryMethod();
+    return `Creator: ${product.print()}`;
   }
 }
 
-class Dog extends Animal {
-  constructor() {
-    super();
-    this.sound = 'Woof woof';
+// Concrete creators
+class SoapCreator extends ProductCreator {
+  public factoryMethod(): Product {
+      return new Soap();
   }
 }
 
-class Cat extends Animal {
-  constructor() {
-    super();
-    this.sound = 'Meow';
+class JamCreator extends ProductCreator {
+  public factoryMethod(): Product {
+      return new Jam();
   }
 }
 
-class AnimalCreator {
-  static factory(type: string): IAnimal {
-      if (type === 'dog') {
-          return new Dog();
-      } else if (type === 'cat') {
-          return new Cat();
-      } else {
-          return new Animal();
-      }
+// Product interface
+interface Product {
+  print(): string;
+}
+
+// Concrete products
+class Soap implements Product {
+  public print(): string {
+      return 'Printing soap';
   }
 }
 
-AnimalCreator.factory('').speak();
-AnimalCreator.factory('dog').speak();
-AnimalCreator.factory('cat').speak();
+class Jam implements Product {
+  public print(): string {
+      return 'Printing jam';
+  }
+}
+
+// App code
+function app(creator: ProductCreator) {
+  console.log(creator.exampleDefaultActions());
+}
+
+console.log('App: Launched with soap creator.');
+app(new SoapCreator());
+console.log('');
+
+console.log('App: Launched with jam creator.');
+app(new JamCreator());
