@@ -1,54 +1,65 @@
 // Abstract creator
-abstract class ProductCreator {
-  public abstract factoryMethod(): Product;
+abstract class GraphCreator {
+  public abstract factoryMethod(data: any[]): Graph;
 
-  public exampleDefaultActions(): string {
-    const product = this.factoryMethod();
-    return `Creator: ${product.print()}`;
+  public render(data: any[]): string {
+    const graph = this.factoryMethod(data);
+    return `Creator: ${graph.print()}`;
   }
 }
 
 // Concrete creators
-class SoapCreator extends ProductCreator {
-  public factoryMethod(): Product {
-      return new Soap();
+class PieGraphCreator extends GraphCreator {
+  public factoryMethod(data: []): Graph {
+      return new PieGraph(data);
   }
 }
 
-class JamCreator extends ProductCreator {
-  public factoryMethod(): Product {
-      return new Jam();
+class BarGraphCreator extends GraphCreator {
+  public factoryMethod(data: []): Graph {
+      return new BarGraph(data);
   }
 }
 
-// Product interface
-interface Product {
+// Graph interface
+interface Graph {
   print(): string;
 }
 
-// Concrete products
-class Soap implements Product {
+// Concrete graphs
+class PieGraph implements Graph {
+  constructor(data: []) {
+    // Do something
+  }
+
   public print(): string {
-      return 'Printing soap';
+      return 'Printing pie data';
   }
 }
 
-class Jam implements Product {
+class BarGraph implements Graph {
+  constructor(data: []) {
+    // Do something
+  }
+
   public print(): string {
-      return 'Printing jam';
+      return 'Printing bar data';
   }
 }
 
 // App code
-function app(creator: ProductCreator) {
-  console.log(creator.exampleDefaultActions());
-  const anotherProduct = creator.factoryMethod();
-  console.log(anotherProduct.print());
+function app(creator: GraphCreator) {
+  const data = [{ data: 'Fake 1' }];
+
+  console.log(creator.render(data));
+  
+  const anotherGraph = creator.factoryMethod(data);
+  console.log(anotherGraph.print());
 }
 
-console.log('App: Launched with soap creator.');
-app(new SoapCreator());
+console.log('App: Launched with pie graph creator.');
+app(new PieGraphCreator());
 console.log('--------------------------------');
 
-console.log('App: Launched with jam creator.');
-app(new JamCreator());
+console.log('App: Launched with bar graph creator.');
+app(new BarGraphCreator());
