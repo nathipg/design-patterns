@@ -151,10 +151,6 @@ class Client {
 
 // Facade
 class Order {
-  private static getDetails(items: Item[]) {
-    return 
-  }
-
   public static placeOrder(client: Client, items: Item[]) {
     // Change stock
     items.forEach(item => {
