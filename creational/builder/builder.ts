@@ -16,6 +16,7 @@ interface IFieldBuilder {
   addType(type: EFieldType): IFieldBuilder;
   addName(name: string): IFieldBuilder;
   addOptions(options: string[]): IFieldBuilder;
+  addOption(options: string): IFieldBuilder;
   build(): HTMLInputElement | HTMLSelectElement;
 }
 
@@ -55,7 +56,12 @@ class FieldBuilder implements IFieldBuilder {
   }
 
   public addOptions(options: string[]): IFieldBuilder {
-    this.field.setOptions(options);
+    this.field.setOptions([...this.field.options, ...options]);
+    return this;
+  }
+
+  public addOption(option: string): IFieldBuilder {
+    this.field.setOptions([...this.field.options, option]);
     return this;
   }
 
@@ -97,5 +103,8 @@ const fieldBuilder2 = new FieldBuilder();
 const select = fieldBuilder2
   .addName('select-name')
   .addType(EFieldType.select)
+  .addOption('opt0')
   .addOptions(['opt1', 'opt2'])
+  .addOption('opt3')
   .build();
+  
