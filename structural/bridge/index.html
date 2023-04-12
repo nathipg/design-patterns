@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bridge</title>
+  <script src="bridge.js" defer></script>
+
+  <style>
+    * {
+      margin: 0;
+    }
+
+    .game {
+      box-sizing: border-box;
+      border: 1px solid black;
+      text-align: center;
+      padding: 10px;
+      margin: 10px;
+      width: calc(100% - 20px);
+    }
+
+    .game h1 {
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .side-by-side {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div id="game" class="game">
+    <div id="selectCharacter" class="screen">
+      <h1>Select your character</h1>
+
+      <form action="#" id="selectionForm">
+        <div class="side-by-side">
+          <div class="input-group">
+            <label>Character</label>
+            <select name="character" id="selectCharacter">
+              <optgroup label="Tank">
+                <option value="Roadhog">Roadhog</option>
+                <option value="Reinhardt">Reinhardt</option>
+                <option value="Orisa">Orisa</option>
+                <option value="Winston">Winston</option>
+              </optgroup>
+              <optgroup label="DPS">
+                <option value="Mei">Mei</option>
+                <option value="Junkrat">Junkrat</option>
+                <option value="Torbjorn">Torbjorn</option>
+                <option value="Soldier">Soldier</option>
+              </optgroup>
+              <optgroup label="Support">
+                <option value="Lúcio">Lúcio</option>
+                <option value="Kiriko">Kiriko</option>
+                <option value="Moira">Moira</option>
+                <option value="Mercy">Mercy</option>
+              </optgroup>
+            </select>
+          </div>
+  
+          <div class="input-group">
+            <label>Skin</label>
+            <select name="skin" id="selectSkin">
+              <option value="Default">Default</option>
+              <option value="Halloween">Halloween</option>
+            </select>
+          </div>
+        </div>
+      </form>
+
+      <br /><br />
+
+      <button type="button" id="btnStartGame">Play</button>
+    </div>
+
+    <div id="play" class="screen hidden">
+      <h1>Battle</h1>
+
+      <div id="actions"></div>
+
+      <br /><br />
+
+      <button type="button" id="btnResetGame">Reset</button>
+    </div>
+  </div>
+</body>
+</html>
