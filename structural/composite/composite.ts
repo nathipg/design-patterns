@@ -7,7 +7,7 @@ enum NumberType {
 abstract class SelectableItem {
   protected selected: boolean = false;
   protected label: string;
-  protected id: number;
+  protected id: number = 0;
 
   constructor(label: string) {
     this.label = label;
@@ -127,7 +127,13 @@ class SelectTreeBuilder {
 }
 
 const treeIterator = function* (tree: GroupSelectItem) {
-  const helper = function* (tree: GroupSelectItem, lvl = 0) {
+  const helper: (
+    tree: GroupSelectItem,
+    lvl?: number
+  ) => Generator<string, void, undefined> = function* (
+    tree: GroupSelectItem,
+    lvl = 0
+  ) {
     for (const child of tree.getChildren()) {
       yield child.getText(child, lvl);
 
@@ -137,7 +143,7 @@ const treeIterator = function* (tree: GroupSelectItem) {
     }
   };
 
-  return yield* helper(tree);
+  yield* helper(tree);
 };
 
 const selectItemsFilter = (id: number, numberType: NumberType) => {
