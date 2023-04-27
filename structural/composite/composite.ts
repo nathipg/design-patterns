@@ -71,7 +71,6 @@ class GroupSelectItem extends SelectableItem {
   }
 
   public getValue(): number[] {
-    // child => child.getValue()
     const selectedChildrenId = this.children.reduce<number[]>(
       (allIds, child) => [...allIds, ...child.getValue()],
       []
