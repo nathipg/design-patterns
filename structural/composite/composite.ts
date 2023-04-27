@@ -194,7 +194,7 @@ selectTreeBuilder
 
 const selectTree = selectTreeBuilder.build();
 
-selectItems(selectTree, NumberType.EVEN);
+selectItems(selectTree, NumberType.ALL);
 
 for (let item of treeIterator(selectTree)) {
   console.log(item);
