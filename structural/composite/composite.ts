@@ -200,4 +200,7 @@ for (let item of treeIterator(selectTree)) {
   console.log(item);
 }
 
+const item1 = selectTree.getChildren()[1];
+
 console.log(selectTree.getValue());
+console.log(item1.getValue());
